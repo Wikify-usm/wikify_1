@@ -1,0 +1,11 @@
+{% extends 'index.html' %}
+{% block title %}registro{% endblock %}
+{% block content %}
+<form action='' method='post'>
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type='submit' value="guardar">
+    <input type="reset" value="limpiar">
+
+</form>
+{% endblock %}

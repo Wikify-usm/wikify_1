@@ -1,12 +1,21 @@
-from django.contrib.auth.models import User
-from django.contrib.auth.forms import UserCreationForm
-from django.views.generic import CreateView
-from django.urls import reverse_lazy
+from django.contrib.auth import login, authenticate
 from Apps.usuario.forms import Registroform
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
-class RegistroUsuario(CreateView):
-    model = User
-    template_name = 'usuario/registrar.html'
-    form_class = Registroform
-    success_url = reverse_lazy('admin')
+
+
+def Registro_usuario(request):
+    data = {
+        'form': Registroform()
+    }
+
+    if request.method == "POST":
+        formulario = Registroform(request.POST)
+        if formulario.is_valid():
+            formulario.save()
+            username = formulario.cleaned_data['username']
+            password = formulario.cleaned_data['password1']
+            user = authenticate(username=username, password=password)
+            login(request, user)
+            return redirect(to='index')
+    return render(request, 'registrar.html', data)

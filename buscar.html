@@ -54,3 +54,21 @@
 
    
 {%endblock content%}
+    
+    
+    
+      {% block barra_busqueda %}
+    <div class="busqueda">
+      <form class="navbar-search pull-left"  method="POST" action="/subirCanciones/buscar/"  > {% csrf_token %} 
+        <input type="text" name="buscalo" class="search-query" placeholder="Buscar...">
+        <div class="btn-group">
+          <button class="btn btn-primary" type="submit">
+            <i class="icon-search"></i>
+          </button>
+
+        </div>
+      </form>
+
+
+    </div>
+  {% endblock barra_busqueda %}

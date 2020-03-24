@@ -1,0 +1,56 @@
+{%extends 'home/home.html'%}
+{% load static %}
+{% block barra_busqueda %}
+{%endblock%}
+{%block content%}
+    
+<table> 
+{% if ahora   %}    
+<thead>
+    
+    <td>Nombre</td>
+    <td>Artista</td>
+    <td>Genero</td>
+    <td>Album</td>
+    <td>Info</td>
+    <td>Escuchar</td>
+{%else%}
+    <h1>No esta disponible</h1>
+{%endif%}
+
+
+
+</thead>
+
+
+    
+    <tbody>
+        {% if ahora   %}
+        {% for now in ahora   %}
+        <tr>
+            
+            <td>{{now.nombre}}</td>
+            <td>{{now.artista}} </td>
+            <td>{{now.genero}}</td>
+            <td>{{now.album}}</td>
+            <td>{{now.info}} </td>
+            
+            <td><audio src='{{now.link}}.mp3' controls="controls" type="audio/mpeg" preload="preload">
+            </audio></td>
+
+        {%endfor%}
+        {%endif%}
+
+        </tr>
+    
+    
+
+
+
+    </tbody>
+</table>  
+<div>
+    
+
+   
+{%endblock content%}
